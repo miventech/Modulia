@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Entornos virtuales
+.venv/
+.venv-win/
+venv/
+
+# Configuración privada y secretos
+.env
+.env.*
+!.env.example
+config/app.toml
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Datos generados por ModulAI
+data/
+downloads/
+
+# Recursos locales pesados: se distribuyen por separado de Git.
+modules/ocr/runtime/
+
+# Configuración local de asistentes
+.agents/
+
+# IDE y sistema operativo
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

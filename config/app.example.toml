@@ -1,0 +1,26 @@
+[app]
+name = "ModulAI"
+data_dir = "data"
+
+[modules]
+paths = ["modules"]
+
+[logging]
+level = "INFO"
+file_enabled = true
+file_name = "modulai.log"
+
+[web]
+host = "127.0.0.1"
+port = 8765
+open_browser = true
+
+[telegram]
+enabled = false
+token_env = "MODULAI_TELEGRAM_TOKEN"
+activation_password_env = "MODULAI_TELEGRAM_ACTIVATION_PASSWORD"
+activation_timeout_seconds = 300
+max_activation_attempts = 3
+network_timeout_seconds = 30
+allowed_user_ids = []
+drop_pending_updates = false
