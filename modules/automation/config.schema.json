@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Configuración de automatización",
+  "type": "object",
+  "properties": {
+    "enabled": {"type": "boolean", "default": true},
+    "time_zone": {"type": "string", "default": "America/Lima", "description": "Zona horaria IANA para horas y fechas programadas."},
+    "poll_seconds": {"type": "integer", "default": 2, "description": "Frecuencia con que se revisan las programaciones pendientes."}
+  },
+  "additionalProperties": false
+}

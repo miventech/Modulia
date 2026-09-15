@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "id": "local.automation",
+  "name": "Programador y recordatorios",
+  "version": "0.1.0",
+  "entrypoint": "modulai_automation.plugin:create_module",
+  "requires_core": ">=0.1,<0.2",
+  "capabilities": ["command", "scheduler", "reminders", "persistent_storage"],
+  "config_schema": "config.schema.json"
+}
