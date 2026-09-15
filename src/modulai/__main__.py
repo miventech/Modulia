@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import sys
 from pathlib import Path
 
 from modulai.bootstrap import Application
@@ -23,7 +24,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 async def run(args: argparse.Namespace) -> int:
-    application = Application.create(Path.cwd(), args.config)
+    application = Application.create(_application_root(), args.config)
     await application.start()
     try:
         if args.command:
@@ -66,6 +67,13 @@ async def run(args: argparse.Namespace) -> int:
 def main() -> None:
     args = build_parser().parse_args()
     raise SystemExit(asyncio.run(run(args)))
+
+
+def _application_root() -> Path:
+    """Devuelve la carpeta de la app, también dentro de una distribución congelada."""
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent
+    return Path.cwd()
 
 
 if __name__ == "__main__":

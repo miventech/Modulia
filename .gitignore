@@ -12,6 +12,7 @@ htmlcov/
 .venv/
 .venv-win/
 venv/
+.build-venv/
 
 # Configuración privada y secretos
 .env
@@ -26,6 +27,9 @@ config/app.toml
 # Datos generados por ModulAI
 data/
 downloads/
+build/
+dist/
+*.spec
 
 # Recursos locales pesados: se distribuyen por separado de Git.
 modules/ocr/runtime/

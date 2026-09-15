@@ -78,6 +78,13 @@ La aplicación abre `http://127.0.0.1:8765` automáticamente.
 También puedes hacer doble clic en `Abrir-ModulAI.bat`; usa el entorno virtual del
 proyecto y conserva la ventana abierta si el arranque falla.
 
+## Distribución Windows
+
+`build-exe.cmd` genera una distribución autocontenida en `dist/ModulAI/`. Ejecuta
+`ModulAI.exe` para abrir la interfaz. Conserva las carpetas `config/` y `modules/` junto
+al ejecutable: los módulos se descubren al iniciar, por lo que puedes añadir uno nuevo y
+reiniciar sin recompilar. La distribución no incluye `.env` ni `config/app.toml`.
+
 ## IA opcional con OpenCode
 
 ## OCR local
