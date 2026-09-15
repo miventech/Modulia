@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Configuración de audio de YouTube",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Activa el módulo al iniciar ModulAI."
+    },
+    "output_dir": {
+      "type": "string",
+      "default": "downloads/youtube",
+      "description": "Directorio relativo a data_dir donde se guardan los MP3."
+    },
+    "audio_quality": {
+      "type": "string",
+      "default": "192K",
+      "enum": ["128K", "192K", "256K", "320K"],
+      "description": "Calidad VBR/bitrate solicitada a ffmpeg."
+    },
+    "retain_files": {
+      "type": "boolean",
+      "default": true,
+      "description": "Conserva el MP3 después de completar el trabajo."
+    },
+    "ffmpeg_location": {
+      "type": "string",
+      "default": "",
+      "description": "Ruta opcional a ffmpeg.exe o a su carpeta."
+    }
+  },
+  "additionalProperties": false
+}
