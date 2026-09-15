@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Conexión de IA OpenCode",
+  "type": "object",
+  "properties": {
+    "enabled": {"type": "boolean", "default": true, "description": "Activa la IA después de reiniciar."},
+    "base_url": {"type": "string", "default": "https://opencode.ai/zen/go/v1/chat/completions", "description": "Endpoint de chat. Para OpenCode Go usa https://opencode.ai/zen/go/v1/chat/completions; /models solo se usa para cargar el dropdown."},
+    "api_key_env": {"type": "string", "default": "OPENCODE_API_KEY", "description": "Variable de entorno que contiene la clave; nunca se guarda la clave aquí."},
+    "model": {"type": "string", "default": "", "description": "Selecciona un modelo publicado por el endpoint configurado."},
+    "timeout_seconds": {"type": "integer", "default": 60, "description": "Tiempo máximo de espera de cada respuesta."},
+    "max_tokens": {"type": "integer", "default": 1200, "description": "Límite de tokens generados por respuesta."},
+    "max_tool_rounds": {"type": "integer", "default": 4, "description": "Máximo de rondas para ejecutar comandos como herramientas."},
+    "context_message_limit": {"type": "integer", "default": 10, "description": "Cantidad de mensajes recientes que se envían como contexto a la IA."},
+    "allow_tools": {"type": "boolean", "default": true, "description": "Permite a la IA invocar comandos y módulos."},
+    "system_prompt": {"type": "string", "default": "Responde en español, sé claro y confirma los resultados. Usa herramientas cuando necesites consultar o modificar datos.", "description": "Instrucciones adicionales para la IA."}
+  },
+  "additionalProperties": false
+}

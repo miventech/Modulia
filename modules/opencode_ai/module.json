@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "id": "local.opencode_ai",
+  "name": "Asistente IA OpenCode",
+  "version": "0.1.0",
+  "entrypoint": "modulai_opencode_ai.plugin:create_module",
+  "requires_core": ">=0.1,<0.2",
+  "capabilities": ["command", "network", "tool_execution"],
+  "config_schema": "config.schema.json"
+}
