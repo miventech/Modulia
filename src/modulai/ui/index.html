@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>ModulAI</title>
+    <link rel="stylesheet" href="/app.css">
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">M</span>
+          <div><strong>ModulAI</strong><small>Centro local</small></div>
+        </div>
+
+        <nav aria-label="Secciones">
+          <button class="nav-item active" data-view="chat"><span>⌁</span> Conversación</button>
+          <button class="nav-item" data-view="modules"><span>◇</span> Módulos</button>
+          <button class="nav-item" data-view="memories"><span>◉</span> Memoria</button>
+          <button class="nav-item" data-view="tasks"><span>▤</span> Mis tareas</button>
+          <button class="nav-item" data-view="finance"><span>◫</span> Finanzas</button>
+          <button class="nav-item" data-view="gallery"><span>▣</span> Galería</button>
+          <button class="nav-item" data-view="log"><span>≡</span> Registro</button>
+          <button class="nav-item" data-view="diagnostics"><span>⌘</span> Diagnóstico</button>
+          <button class="nav-item" data-view="config"><span>⚙</span> Configuración</button>
+        </nav>
+
+        <div class="sidebar-foot">
+          <div class="status-line"><i id="status-dot"></i><span id="status-text">Conectando…</span></div>
+          <small>Solo accesible desde este equipo</small>
+        </div>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">ASISTENTE PERSONAL</p>
+            <h1 id="view-title">Conversación</h1>
+          </div>
+          <div class="top-actions">
+            <span class="privacy">Privado · Local</span>
+            <button class="icon-button" id="refresh" title="Actualizar">↻</button>
+          </div>
+        </header>
+
+        <section class="view active" id="chat-view">
+          <div class="chat-panel">
+            <div class="messages" id="messages" aria-live="polite">
+              <article class="message assistant">
+                <div class="avatar">M</div>
+                <div class="bubble">
+                  <span class="speaker">ModulAI</span>
+                  <p>El núcleo está listo. Prueba un comando o consulta la ayuda.</p>
+                </div>
+              </article>
+            </div>
+
+            <div class="quick-actions" id="quick-actions">
+              <button data-command="/ayuda">/ayuda</button>
+              <button data-command="/modulos">/modulos</button>
+              <button data-command="/conversacion">/conversacion</button>
+              <button data-command="/recuerdos">/recuerdos</button>
+            </div>
+
+            <form class="composer" id="composer">
+              <label class="upload-button" title="Seleccionar audio para transcribir">
+                <input id="audio-input" type="file" accept="audio/*,.m4a,.ogg,.flac,.aac,.webm,.mp4">
+                Audio
+              </label>
+              <textarea id="message-input" rows="1" maxlength="10000" placeholder="Escribe un comando…" required></textarea>
+              <button type="submit" id="send-button">Enviar <span>↗</span></button>
+            </form>
+            <p class="composer-hint">Selecciona un audio para transcribir · Enter para enviar · Shift + Enter para nueva línea</p>
+          </div>
+        </section>
+
+        <section class="view" id="modules-view">
+          <div class="section-intro">
+            <div><h2>Módulos instalados</h2><p>Se detectan automáticamente al iniciar ModulAI.</p></div>
+            <span class="count" id="module-count">0</span>
+          </div>
+          <div class="card-grid" id="module-list"></div>
+        </section>
+
+        <section class="view" id="memories-view">
+          <div class="section-intro">
+            <div><h2>Memoria persistente</h2><p>Información guardada mediante <code>/no_olvidar</code>.</p></div>
+            <span class="count" id="memory-count">0</span>
+          </div>
+          <div class="memory-list" id="memory-list"></div>
+        </section>
+
+        <section class="view" id="tasks-view">
+          <div class="section-intro">
+            <div><h2>Mis tareas</h2><p>Notas personales sincronizadas con tus comandos y Telegram.</p></div>
+            <span class="count" id="task-count">0</span>
+          </div>
+          <div class="task-board-toolbar">
+            <form class="sticky-composer" id="task-form">
+              <textarea id="task-text" rows="2" maxlength="500" placeholder="Escribe una tarea o nota…" required></textarea>
+              <div class="sticky-options">
+                <label>Color
+                  <select id="task-color">
+                    <option value="yellow">Amarillo</option><option value="pink">Rosa</option>
+                    <option value="purple">Morado</option><option value="blue">Azul</option>
+                    <option value="green">Verde</option><option value="orange">Naranja</option>
+                  </select>
+                </label>
+                <label>Importancia
+                  <select id="task-importance">
+                    <option value="baja">Baja</option><option value="media" selected>Media</option><option value="alta">Alta</option>
+                  </select>
+                </label>
+                <label>Categoría
+                  <input id="task-category" list="task-categories" value="General" maxlength="60" placeholder="General">
+                  <datalist id="task-categories"></datalist>
+                </label>
+                <button type="submit" class="primary-button">+ Crear nota</button>
+              </div>
+            </form>
+            <label class="task-toggle"><input id="show-completed-tasks" type="checkbox"> Mostrar completadas</label>
+          </div>
+          <div class="sticky-grid" id="task-list"></div>
+        </section>
+
+        <section class="view" id="finance-view">
+          <div class="section-intro">
+            <div><h2>Finanzas personales</h2><p>Gastos, ingresos y facturas guardados solo en este equipo.</p></div>
+          </div>
+          <div class="finance-toolbar">
+            <label>Mes
+              <input id="finance-month" type="month">
+            </label>
+            <span id="finance-currency">PEN</span>
+          </div>
+          <div class="finance-summary" id="finance-summary"></div>
+          <form class="finance-form" id="finance-form">
+            <label>Tipo
+              <select id="finance-kind"><option value="expense">Gasto</option><option value="income">Ingreso</option><option value="invoice">Factura</option></select>
+            </label>
+            <label>Descripción
+              <input id="finance-description" maxlength="500" required placeholder="Ej. Supermercado">
+            </label>
+            <label>Monto
+              <input id="finance-amount" inputmode="decimal" maxlength="20" required placeholder="0.00">
+            </label>
+            <label>Categoría
+              <input id="finance-category" maxlength="60" value="General" placeholder="General">
+            </label>
+            <label>Fecha
+              <input id="finance-occurred-on" type="date" required>
+            </label>
+            <label>Vencimiento <small>Opcional, para factura</small>
+              <input id="finance-due-on" type="date">
+            </label>
+            <label class="finance-check"><span>Gasto mensual</span>
+              <input id="finance-recurring" type="checkbox">
+              <small>Se crea una ocurrencia pendiente cada mes.</small>
+            </label>
+            <label class="finance-check"><span>Pagado</span>
+              <input id="finance-paid" type="checkbox" checked>
+              <small>Desactívalo si debe descontarse después de pagarlo.</small>
+            </label>
+            <button type="submit" class="primary-button">+ Registrar movimiento</button>
+          </form>
+          <div class="finance-table-wrap">
+            <table class="finance-table">
+              <thead><tr><th>Fecha</th><th>Tipo</th><th>Descripción</th><th>Categoría</th><th>Monto</th><th>Estado</th><th></th></tr></thead>
+              <tbody id="finance-list"></tbody>
+            </table>
+          </div>
+          <p class="finance-hint">Próximamente podrás adjuntar una imagen de recibo para extraer los datos con OCR o IA; esta versión no envía ni procesa imágenes.</p>
+        </section>
+
+        <section class="view" id="gallery-view">
+          <div class="section-intro">
+            <div><h2>Galería multimedia</h2><p>Archivos de imagen, video y música guardados por ModulAI.</p></div>
+            <span class="count" id="media-count">0</span>
+          </div>
+          <div class="media-toolbar">
+            <div class="media-filters" role="group" aria-label="Filtrar archivos multimedia">
+              <button class="filter-button active" data-media-filter="all">Todo</button>
+              <button class="filter-button" data-media-filter="image">Imágenes</button>
+              <button class="filter-button" data-media-filter="video">Videos</button>
+              <button class="filter-button" data-media-filter="audio">Música</button>
+              <button class="filter-button" data-media-filter="text">Transcripciones</button>
+            </div>
+            <button class="primary-button" id="play-all-audio">▶ Reproducir toda la música</button>
+          </div>
+          <p class="player-status" id="player-status" aria-live="polite"></p>
+          <div class="media-grid" id="media-list"></div>
+        </section>
+
+        <section class="view" id="log-view">
+          <div class="section-intro"><div><h2>Registro de mensajes</h2><p>Mensajes recibidos y enviados por ModulAI.</p></div><button class="primary-button" id="refresh-log">Actualizar</button></div>
+          <div class="message-log" id="message-log-list"></div>
+        </section>
+
+        <section class="view" id="diagnostics-view">
+          <div class="section-intro"><div><h2>Diagnóstico</h2><p>Estado actual del núcleo local.</p></div></div>
+          <div class="diagnostic-grid">
+            <article class="metric"><span>Estado</span><strong id="health-status">—</strong></article>
+            <article class="metric"><span>Módulos activos</span><strong id="active-modules">—</strong></article>
+            <article class="metric"><span>Errores</span><strong id="module-errors">—</strong></article>
+            <article class="metric"><span>Comandos</span><strong id="command-count">—</strong></article>
+          </div>
+          <article class="command-card">
+            <h3>Catálogo de comandos</h3>
+            <div id="command-list"></div>
+          </article>
+          <article class="command-card">
+            <h3>Trabajos recientes</h3>
+            <div id="job-list"></div>
+          </article>
+        </section>
+
+        <section class="view" id="config-view">
+          <div class="section-intro">
+            <div><h2>Configuración del proyecto</h2><p>Edita <code>config/app.toml</code> desde esta pantalla.</p></div>
+            <span class="count" id="config-state">—</span>
+          </div>
+          <div class="config-note" id="config-note">Cargando configuración…</div>
+          <form class="settings-form" id="config-form">
+            <fieldset>
+              <legend>Aplicación</legend>
+              <label>Nombre<input id="config-app-name" required maxlength="120"></label>
+              <label>Directorio de datos<input id="config-data-dir" required></label>
+            </fieldset>
+            <fieldset>
+              <legend>Módulos</legend>
+              <label>Directorios de módulos <small>Separados por comas</small><input id="config-module-paths" required></label>
+            </fieldset>
+            <fieldset>
+              <legend>Servidor local</legend>
+              <div class="form-grid">
+                <label>Host<input id="config-web-host" required></label>
+                <label>Puerto<input id="config-web-port" type="number" min="1" max="65535" required></label>
+              </div>
+              <label class="check-label"><input id="config-web-browser" type="checkbox"> Abrir el navegador al iniciar</label>
+            </fieldset>
+            <fieldset>
+              <legend>Logging</legend>
+              <div class="form-grid">
+                <label>Nivel<select id="config-log-level"><option>DEBUG</option><option>INFO</option><option>WARNING</option><option>ERROR</option><option>CRITICAL</option></select></label>
+                <label>Archivo<input id="config-log-file" required></label>
+              </div>
+              <label class="check-label"><input id="config-log-enabled" type="checkbox"> Guardar archivo de logs</label>
+            </fieldset>
+            <fieldset>
+              <legend>Telegram</legend>
+              <label class="check-label"><input id="config-tg-enabled" type="checkbox"> Activar el adaptador Telegram</label>
+              <div class="form-grid">
+                <label>Variable del token<input id="config-tg-token-env" required></label>
+                <label>Variable de contraseña<input id="config-tg-password-env" required></label>
+                <label>Caducidad de activación (segundos)<input id="config-tg-timeout" type="number" min="30" max="3600" required></label>
+                <label>Máximo de intentos<input id="config-tg-attempts" type="number" min="1" max="10" required></label>
+                <label>Espera de red (segundos)<input id="config-tg-network-timeout" type="number" min="5" max="120" required></label>
+              </div>
+              <label>IDs autorizados inicialmente <small>Separados por comas; también puedes usar activación por contraseña</small><input id="config-tg-users"></label>
+              <label class="check-label"><input id="config-tg-drop" type="checkbox"> Ignorar mensajes pendientes al iniciar</label>
+            </fieldset>
+            <div class="settings-actions">
+              <button type="submit" class="primary-button">Guardar configuración</button>
+              <span id="config-message"></span>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
