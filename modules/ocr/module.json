@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "id": "local.ocr",
+  "name": "OCR local",
+  "version": "0.1.0",
+  "entrypoint": "modulai_ocr.plugin:create_module",
+  "requires_core": ">=0.1,<0.2",
+  "capabilities": ["command", "background_job", "ocr"],
+  "config_schema": "config.schema.json"
+}
