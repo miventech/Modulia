@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Configuración de transcripción local",
+  "type": "object",
+  "properties": {
+    "enabled": {"type": "boolean", "default": true},
+    "model": {"type": "string", "default": "small", "enum": ["tiny", "base", "small", "medium", "large-v3"]},
+    "device": {"type": "string", "default": "cpu", "enum": ["auto", "cpu", "cuda"]},
+    "compute_type": {"type": "string", "default": "auto"},
+    "language": {"type": "string", "default": ""},
+    "max_file_mb": {"type": "integer", "default": 500},
+    "retain_input": {"type": "boolean", "default": false}
+    ,"forward_to_ai": {"type": "boolean", "default": true, "description": "Envía automáticamente a la IA las transcripciones cortas."},
+    "ai_forward_max_seconds": {"type": "integer", "default": 60, "description": "Duración máxima para reenviar el audio transcrito a la IA."}
+  },
+  "additionalProperties": false
+}

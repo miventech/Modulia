@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "id": "local.transcription",
+  "name": "Transcripción local",
+  "version": "0.1.0",
+  "entrypoint": "modulai_transcription.plugin:create_module",
+  "requires_core": ">=0.1,<0.2",
+  "capabilities": ["command", "background_job", "audio_transcription"],
+  "config_schema": "config.schema.json"
+}
