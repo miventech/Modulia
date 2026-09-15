@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Configuración de finanzas personales",
+  "type": "object",
+  "properties": {
+    "enabled": {"type": "boolean", "default": true, "description": "Activa el módulo al reiniciar."},
+    "currency": {"type": "string", "default": "PEN", "description": "Código de moneda mostrado en los resúmenes."},
+    "share_telegram_with_local": {"type": "boolean", "default": true, "description": "Comparte las finanzas de Telegram con la interfaz local."},
+    "shared_principal_id": {"type": "string", "default": "local-user", "description": "Identidad común usada por los canales compartidos."}
+  },
+  "additionalProperties": false
+}
