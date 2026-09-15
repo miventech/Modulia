@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Configuración del descargador de playlists",
+  "type": "object",
+  "properties": {
+    "enabled": {"type": "boolean", "default": true},
+    "output_dir": {"type": "string", "default": "downloads/playlists"},
+    "max_items": {"type": "integer", "default": 25},
+    "audio_format": {"type": "string", "default": "mp3", "enum": ["mp3", "m4a", "opus"]},
+    "audio_quality": {"type": "string", "default": "192K", "enum": ["128K", "192K", "256K", "320K"]},
+    "video_format": {"type": "string", "default": "mp4", "enum": ["mp4", "webm", "mkv"]},
+    "video_quality": {"type": "string", "default": "best", "enum": ["best", "1080", "720", "480"]},
+    "ffmpeg_location": {"type": "string", "default": ""}
+  },
+  "additionalProperties": false
+}
