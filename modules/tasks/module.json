@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "id": "local.tasks",
+  "name": "Gestor de tareas personal",
+  "version": "0.1.0",
+  "entrypoint": "modulai_tasks.plugin:create_module",
+  "requires_core": ">=0.1,<0.2",
+  "capabilities": ["command", "persistent_storage", "web_ui", "telegram"],
+  "config_schema": "config.schema.json"
+}
